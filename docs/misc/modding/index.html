@@ -60,7 +60,7 @@
     </p>
 
     <img src="script-error.png" alt="">
-    <i>right click and open in new tab to see larger image</i>
+    <i>hold click to see larger image</i>
 
     <p>
       As you can see the errors are always under this format : <span>Error [origin of the error]path/to/the/file/with/error.ws(line number): And the error</span>.
@@ -114,13 +114,15 @@
         <a href="#show-brace-example">hide</a>
         Here is an valid example:
         <pre>
-          if (thePlayer.GetLevel() > 10) <span>{</span>
+          if (thePlayer.GetLevel() > 10)
+          <span>{</span>
             thePlayer.TeleportWithRotation(Vector(10, 10, 10));
           <span>}</span>
         </pre>
         And here is an invalid one
         <pre>
-          for (i = 0; i < npc_list.Size(); i += 1) <span>{</span>
+          for (i = 0; i < npc_list.Size(); i += 1)
+          <span>{</span>
             npc.SetLevel((i + 2) / 5);
           
         </pre>
@@ -137,10 +139,12 @@
         <a href="#show-else-example">hide</a>
         Here is a valid example:
         <pre>
-          <span>if</span> (thePlayer.GetLevel() > 10) {
+          <span>if</span> (thePlayer.GetLevel() > 10)
+          {
             thePlayer.TeleportWithRotation(Vector(10, 10, 10));
           }
-          <span>else</span> {
+          <span>else</span>
+          {
             thePlayer.TeleportWithRotation(Vector(50, 50, 50));
           }
 
@@ -151,13 +155,16 @@
         </pre>
         and here is an invalid example
         <pre>
-          <span>if</span> (thePlayer.GetLevel() > 10) {
+          <span>if</span> (thePlayer.GetLevel() > 10)
+          {
             thePlayer.TeleportWithRotation(Vector(10, 10, 10));
           }
-          <span>else</span> {
+          <span>else</span>
+          {
             thePlayer.TeleportWithRotation(Vector(50, 50, 50));
           }
-          <span>else</span> {
+          <span>else</span>
+          {
             thePlayer.TeleportWithRotation(Vector(100, 100, 100));
           }
 
@@ -179,22 +186,26 @@
 
         Here is a valid example:
         <pre>
-          if (thePlayer.GetLevel() > 10) {
-              thePlayer.TeleportWithRotation(Vector(10, 10, 10));
-            }
+          if (thePlayer.GetLevel() > 10)
+          {
+            thePlayer.TeleportWithRotation(Vector(10, 10, 10));
+          }
           /*
-          else {
+          els
+          {
             thePlayer.TeleportWithRotation(Vector(50, 50, 50));
           }
           */
         </pre>
         and here is an invalid one
         <pre>
-          if (thePlayer.GetLevel() > 10) {
+          if (thePlayer.GetLevel() > 10)
+          {
             thePlayer.TeleportWithRotation(Vector(10, 10, 10));
           }
           /*
-          else {
+          else
+          {
             thePlayer.TeleportWithRotation(Vector(50, 50, 50));
           }
         </pre>
