@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../master.css">
+  <title>The Witcher 3 | Notes</title>
+</head>
+<body>
+  
+  <h1>The Witcher 3 Notes</h1>
+  <blockquote>General information about the game The Witcher 3</blockquote>
+  <a href="../index.html">back to summary</a>
+
+  <section>
+    <h2>Modding</h2>
+
+    <p>
+      This article isn't exactly about how to install mods as every mod you will
+      find may have different install processes. But instead it will focus on what
+      is often considered the most complex part: <b>script merging</b>.
+    </p>
+
+    <h3>Why do you need to merge</h3>
+
+    <p>
+      First why is this step even needed. The game exposes its scripts, a good portion
+      of the source code used to make the game and its logic, in a folder located
+      in <span>/bin/content0</span>. The game developers then offered the possibility
+      for anyone to overwrite one of the original scripts by copying the same folder
+      architecture that is used in this <span>content0</span> directory. Let's say
+      you would want to change the <span>content0/gameplay/playerwitcher.ws</span> file, you
+      would then create a mod in the mods folder with the same path <span>/gameplay/playerwitcher.ws</span>
+    </p>
+
+    <p>
+      The issue with this solution is that if two mods want to change the same file.
+      Only the first one will be loaded and the second one will be completely ignored.
+      And that's why you merge the two mods to create a new one that will be loaded
+      first and that <i>should</i> include changes from both.
+    </p>
+
+    <h3>Why is it so complicated</h3>
+
+    <p>
+      Short answer: because code is complicated. <br/>
+      The long answer is that the scriptmerger is already doing an insane
+      job. Of course it is not perfect, and new better solutions could be developped
+      (i am personally working on one but it may take months to come), but it offers
+      an intuitive and easy to understand interface that anyone can use to compare
+      different versions of a code file. And even with a better tool you would still
+      have to do some manual merging at some point.
+    </p>
+
+    <p>
+      You can learn a few things that will make your life merging life much easier.
+      You can't learn how to read code in a few minutes or hours but you can learn
+      a few things you should look for to avoid compiling errors like these:
+    </p>
+
+    <img src="script-error.png" alt="">
+    <i>right click and open in new tab to see larger image</i>
+
+    <p>
+      As you can see the errors are always under this format : <span>Error [origin of the error]path/to/the/file/with/error.ws(line number): And the error</span>.
+      From them you can learn a lot, by looking at the origin of the error between the <span>[]</span>
+      you can learn which mod causes the errors. Here in the example we see it comes
+      from the merges and from the file <span>playerwitcher.ws</span>. So without
+      looking at the error itself we already know which file we should maybe re-merge
+    </p>
+
+    <h3>Basic merging guide</h3>
+
+    <p>
+      Merging script mods all comes to picking the right version between one mod and another.
+      You are offered three versions, the vanilla, the mod B and the mod C. And it's
+      up to you to pick either A if you want vanilla, B or C. Picking one doesn't stop
+      you from picking another. You can pick both A & B, or B & C etc... You should know
+      that you should rarely pick A as it is vanilla, and you're merging mods for a reason
+      because you don't want vanilla.
+    </p>
+
+    <img src="merging-full-view.png" alt="">
+
+    <p>
+      The three views at the top are A, B and C as said earlier. And the view at the 
+      bottom is the result. What matters most here is how the result looks and you should
+      pick accordingly.
+    </p>
+
+    <img src="script-merger-buttons.png" alt="">
+
+    <p>
+      For each conflict, you should use the A, B, C buttons to pick the version of
+      the code you want. Then you use the arrow buttons to move from one conflict to another.
+      In the image you can see both B and C were picked. And there is no other conflict
+      in the current file. You can now close the window safely
+    </p>
+
+    <h3>Important stuff when merging</h3>
+
+    <p>
+      This part is about stuff you should watch for in the code. You're not supposed
+      to understand exactly what the code does, but the compiler expects the code
+      to be formatted correctly or else you will get errors like shown above in the article.
+      There are important things that are common causes for errors among non software developers,
+      here is a list of them
+    </p>
+
+    <p>
+      For every <span>{</span> comes a <span>}</span>.
+      <div class="spoiler" id="brace-example">
+        <a href="#show-brace-example">hide</a>
+        Here is an valid example:
+        <pre>
+          if (thePlayer.GetLevel() > 10) <span>{</span>
+            thePlayer.TeleportWithRotation(Vector(10, 10, 10));
+          <span>}</span>
+        </pre>
+        And here is an invalid one
+        <pre>
+          for (i = 0; i < npc_list.Size(); i += 1) <span>{</span>
+            npc.SetLevel((i + 2) / 5);
+          
+        </pre>
+      </div>
+      <a href="#brace-example" id="show-brace-example" class="spoiler-show">show</a>
+    </p>
+
+    <p>
+      A line that starts with <span>else</span> cannot follow another line that
+      starts with an <span>else</span> too. And should also follow a previous <span>if</span>
+      statement. It should not follow it closely but still, you should not see an <span>else</span>
+      without an <span>if</span>
+      <div class="spoiler" id="else-example">
+        <a href="#show-else-example">hide</a>
+        Here is a valid example:
+        <pre>
+          <span>if</span> (thePlayer.GetLevel() > 10) {
+            thePlayer.TeleportWithRotation(Vector(10, 10, 10));
+          }
+          <span>else</span> {
+            thePlayer.TeleportWithRotation(Vector(50, 50, 50));
+          }
+
+          <span>if</span> (thePlayer.GetLevel() > 10)
+            thePlayer.TeleportWithRotation(Vector(10, 10, 10));
+          <span>else</span> 
+            thePlayer.TeleportWithRotation(Vector(50, 50, 50));
+        </pre>
+        and here is an invalid example
+        <pre>
+          <span>if</span> (thePlayer.GetLevel() > 10) {
+            thePlayer.TeleportWithRotation(Vector(10, 10, 10));
+          }
+          <span>else</span> {
+            thePlayer.TeleportWithRotation(Vector(50, 50, 50));
+          }
+          <span>else</span> {
+            thePlayer.TeleportWithRotation(Vector(100, 100, 100));
+          }
+
+          <span>if</span> (thePlayer.GetLevel() > 10)
+            thePlayer.TeleportWithRotation(Vector(10, 10, 10));
+          <span>else</span> 
+            thePlayer.TeleportWithRotation(Vector(50, 50, 50));
+          <span>else</span> 
+            thePlayer.TeleportWithRotation(Vector(100, 100, 100));
+        </pre>
+      </div>
+      <a href="#else-example" id="show-else-example" class="spoiler-show">show</a>      
+    </p>
+
+    <p>
+      For every <span>/*</span> comes a <span>*/</span>.
+      <div class="spoiler" id="comment-example">
+        <a href="#show-comment-example">hide</a>
+
+        Here is a valid example:
+        <pre>
+          if (thePlayer.GetLevel() > 10) {
+              thePlayer.TeleportWithRotation(Vector(10, 10, 10));
+            }
+          /*
+          else {
+            thePlayer.TeleportWithRotation(Vector(50, 50, 50));
+          }
+          */
+        </pre>
+        and here is an invalid one
+        <pre>
+          if (thePlayer.GetLevel() > 10) {
+            thePlayer.TeleportWithRotation(Vector(10, 10, 10));
+          }
+          /*
+          else {
+            thePlayer.TeleportWithRotation(Vector(50, 50, 50));
+          }
+        </pre>
+      </div>
+      <a href="#comment-example" id="show-comment-example" class="spoiler-show">show</a>
+      
+    </p>
+  </section>
+
+</body>
+</html>
