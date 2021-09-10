@@ -92,7 +92,7 @@
       <p>
         some mods, or even guides, will ask you to downgrade the version of your game
         to "ensure better compatibilty". You should know this is completely wrong
-        because there are no difference between the latest version <span>1.32</span>
+        because there is no difference between the latest version <span>1.32</span>
         and the one often claimed to be more compatible <span>1.31</span>.
       </p>
 
@@ -115,16 +115,18 @@
       
       <h5>Mod manager</h5>
       <p>
-        The Witcher 3 comes with a few mod managers. Unfortunately doesn't seem to be
-        a game that was developped with modding in mind, unlike Bethesda games. Because
-        of that, modding this game is more complex. So complex that mod managers handle one
-        or two cases and fail miserably on the other.
+        The Witcher 3 is a game that was not developped with modding in mind, this means
+        that modding the game is much more rustic and complex than other games like Skyrim
+        or Valheim. It is so complex that the few mod managers you can find for the game
+        cannot realistically handle all the steps you'd have to do when installing mods.
+        This creates an a big issue, mod managers will someone stop working correctly and will
+        cause mayhem in your current modlist.
       </p>
 
       <p>
         This is the reason i will suggest you <b>not</b> to use a mod manager and
-        instead rely on your good old brain. The fact the mod manager will fail one
-        out of two cases cases adds so much randomness to the process, it is simpler
+        instead rely on your good old brain. The fact a mod manager will fail one
+        out of the two cases adds so much randomness to the process it is simpler
         to do it manually. With mod managers you will have to learn the worflow of the
         manager but also know the manual workflow to confirm it did not break your
         game.
@@ -145,8 +147,8 @@
 
       <h5>Mod limit</h5>
       <p>
-        I told the game was not made with mods in mind for a reason. After you've
-        installed a few mod their bundles, you will hit what is known as the <span>mod limit</span>.
+        As i said earlier the game was not made with mods in mind, and you will quickly notice that. After you've
+        installed a few mods, you will hit what is known as the <span>mod limit</span>.
         Once you reach the limit, sometimes after 10 mods, sometimes after only 1, the game
         will randomly get stuck during loading screens.
       </p>
@@ -168,7 +170,7 @@
         My mods comment sections (and not only mine, all of them) are filled with
         people asking questions that were answered in the documentation. They had
         to wait ten hours only to be redirected to the documentation, where they eventually
-        solved their issue.
+        solved their issues by doing what they could have done at the start.
       </p>
     </section>
   </section>
@@ -177,7 +179,7 @@
     <h2>Installing</h2>
 
     <p>
-      Now that you have your tools all setup, you can start installing mods. To
+      Now that you have your tools all setup you can start installing mods. To
       guide you through the process i picked three mods i think will be perfect candidates.
       Not because they're cool mods but because one is big in terms of scripts and includes
       a menu, the second is small but includes scripts, a dlc, and a menu. And the third
@@ -215,12 +217,97 @@
     </p>
 
     <p>
-      The community patches and shared mods exist for a reason. 
+      That's where depenencies like the community patches and sharedutils shine, when
+      a mod uses one of them you know it will at least be compatible with other mods
+      that also depend on these. Also once you have installed a shared mod once, you
+      no longer have to install it for the other mods that need it. It makes mod management
+      simpler.
     </p>
 
     <h3>Installing the mods</h3>
     <p>
-      Let's start by the simplest of the three
+      Let's start by the simplest of the three: Combat Skills. Navigate into the
+      archive until you see three folders: <span>mods</span>, <span>dlc</span> and <span>bin</span>.
+      Installing a mod when the folders are organised like this is dead simple, open the
+      <span>game directory</span> and drop the three folders directly into your game
+      directory folder.
+    </p>
+
+    <p>
+      Combat skills is now installed. You could launch the game now and everything
+      should work as expected.
+    </p>
+
+    <p>
+      Now for a more complicated one: Friendly HUD. The way Ghost (the author of FHUD)
+      packs her mod is a bit different than the others but it is still pretty simple.
+      Open the archive and you will see a folder named <span>modFriendlyHUD</span>, 
+      because it starts with <span>mod</span> you know it should be dropped into your
+      <span>mods</span> folder inside your <span>game directory</span>.
+      <br/>
+      Once you have done that open the modFriendlyHUD folder and you will notice a <span>bin</span>
+      folder in it, if you remember how we did for CombatSkills you should already know what to do.
+      Bin folders are supposed to be dropped into your game directory as well, so take
+      it and drop it inside your game directory.
+    </p>
+
+    <p>
+      Now is a good time to remind you to read the install instructions of the mods
+      you are installing, especially the Friendly HUD ones. Friendly HUD needs
+      the <a href="https://www.nexusmods.com/witcher3/mods/3652">Community Patch - Base</a> to
+      work. So download it and open the archive, you will see two folders in it: <span>mods</span> and
+      <span>content</span>. This is again the same process, drop these two folders inside
+      your game directory. Accept when prompted to replace a file.
+    </p>
+
+    <p>
+      Let's move on to the third mod: LEGO. This one is a bit different because it is
+      actually a collection of mods. But you will see it is again the same process: three
+      folders <span>mods</span>, <span>bin</span>, <span>dlc</span> that you need to
+      drop into your game folder.
+      <br />
+      And that's it.
+    </p>
+  </section>
+
+  <section>
+    <h2>Installing mods, a quick recap</h2>
+
+    <p>
+      A quick recap of the last section with a list of the main principles:
+      <ul>
+        <li>
+          Before installing a mod, read the install instructions to see if it needs any dependency.
+          If it needs a dependency, download it as well and read its instructions too and apply
+          the same principles to the dependency.
+        </li>
+        <li>
+          If the archive contains any the following folder:
+          <ul>
+            <li><span>mods</span></li>
+            <li><span>bin</span></li>
+            <li><span>dlc</span></li>
+            <li><span>content</span></li>
+          </ul>
+          drop the folder(s) in your game directory
+        </li>
+        <li>
+          If the archive contains a folder that starts with <span>mod</span>,drop
+          that folder insinde the <span>mods</span> folder
+        </li>
+        <li>
+          If the archive contains a folder that starts with <span>dlc</span>,drop
+          that folder insinde the <span>dlc</span> folder
+        </li>
+      </ul>
+    </p>
+  </section>
+
+  <section>
+    <h2>Merging the mods</h2>
+    <p>
+      For this part, which is certainly the hardest part, i invite you to read the
+      <a href="../merging/index.html">gentle introduction to merging mods</a>
     </p>
   </section>
 
