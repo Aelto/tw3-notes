@@ -17,28 +17,27 @@
     <h2>Merging</h2>
 
     <p>
-      This article isn't exactly about how to install mods as every mod you will
-      find may have different install processes. But instead it will focus on what
+      This article isn't about how to install mods as mods tend to
+      have different installation processes. Instead this article will focus on what
       is often considered the most complex part: <b>script merging</b>.
     </p>
 
     <h3>Why do you need to merge</h3>
 
     <p>
-      First why is this step even needed. The game exposes its scripts, a good portion
-      of the source code used to make the game and its logic, in a folder located
-      in <span>/bin/content0</span>. The game developers then offered the possibility
-      for anyone to overwrite one of the original scripts by copying the same folder
-      architecture that is used in this <span>content0</span> directory. Let's say
-      you would want to change the <span>content0/gameplay/playerwitcher.ws</span> file, you
+      First why is this step even needed. The game has exposed scripts, a good portion
+      of the source code used to make the game and its logic, is in a folder located
+      in <span>/content/content0</span>. This means that it is possible for someone to copy the script
+      and its folder path and change the code resulting in parts of the games logic/code being changed 
+      Let's say you would want to change the <span>content0/gameplay/playerwitcher.ws</span> file, you
       would then create a mod in the mods folder with the same path <span>/gameplay/playerwitcher.ws</span>
     </p>
 
     <p>
-      The issue with this solution is that if two mods want to change the same file.
-      Only the first one will be loaded and the second one will be completely ignored.
-      And that's why you merge the two mods to create a new one that will be loaded
-      first and that <i>should</i> include changes from both.
+      The issue with this method is that if two mods want to change the same file
+      only one mods script will be loaded and the other one will be completely ignored.
+      The solution in this case is to merge the scripts of both mods so that 
+      both of their changes will be applied on load
     </p>
 
     <h3>Why is it so complicated</h3>
@@ -71,16 +70,17 @@
     </p>
 
     <p>
-      Now do you see the line with <span>warning</span> written at the beginning.
-      You can safely ignore any of them, they're warnings and not errors for a reason!
+      You may also have noticed a <span>warning<span> below the error
+      Warnings generally of less concern than errors and the game can function with them
     </p>
 
     <h3>Basic merging guide</h3>
 
     <p>
-      Merging script mods all comes to picking the right version between one mod and another.
-      You are offered three versions, the vanilla, the mod B and the mod C. And it's
-      up to you to pick either A if you want vanilla, B or C. Picking one doesn't stop
+      Merging scripts through kdiff (Script Merger's merging program) comes down 
+      to picking the right line of code from one mod or another.
+      You are offered three script versions, the vanilla scripts, mod Bs scripts and mod Cs scripts.
+      It is up to you to pick either A if you want vanilla, B or C. Picking one doesn't stop
       you from picking another. You can pick both A & B, or B & C etc... You should know
       that you should rarely pick A as it is vanilla, and you're merging mods for a reason
       because you don't want vanilla.
