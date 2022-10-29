@@ -25,7 +25,7 @@
     <h3>Why do you need to merge</h3>
 
     <p>
-      First why is this step even needed. The game has exposed scripts, a good portion
+      The game has exposed scripts, a good portion
       of the source code used to make the game and its logic, is in a folder located
       in <span>/content/content0</span>. This means that it is possible for someone to copy the script
       and its folder path and change the code resulting in parts of the games logic/code being changed 
@@ -34,10 +34,10 @@
     </p>
 
     <p>
-      The issue with this method is that if two mods want to change the same file
-      only one mods script will be loaded and the other one will be completely ignored.
-      The solution in this case is to merge the scripts of both mods so that 
-      both of their changes will be applied on load
+      This method has an issue, if two mods change the same file then
+      only one of the mods will get its changes load by the game, the other one will be completely ignored.
+      The solution is to merge the scripts of all the mods that edit the file into a single new mod that will
+      be loaded before everyone else. This will ensure everyone's changes will be included and loaded.
     </p>
 
     <h3>Why is it so complicated</h3>
